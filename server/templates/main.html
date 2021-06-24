@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Search Engine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<meta http-equiv='cache-control' content="no-cache, must-revalidate, post-check=0, pre-check=0">
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slider.css">
+<link rel="stylesheet" type="text/css" href="/css/tag.css">
+<link rel="stylesheet" type="text/css" href="/css/input.css">
+</head>
+
+<body style="background: white;>
+
+    <div class="navbar">
+<div id="firstpage">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <div class="slideshow-container" >
+    <div class="mySlides">
+        <div class="numbertext">1 / 3</div>
+        <img src="https://c.runoob.com/wp-content/uploads/2017/01/img_mountains_wide.jpg" style="width:100%">
+        <div class="text" >天高路远，山清水秀</div>
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">2 / 3</div>
+        <img src="https://c.runoob.com/wp-content/uploads/2017/01/img_fjords_wide.jpg" style="width:100%">
+        <div class="text">结庐在人境，而无车马喧</div>
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">3 / 3</div>
+        <img src="https://c.runoob.com/wp-content/uploads/2017/01/img_nature_wide.jpg" style="width:100%">
+        <div class="text">横看成岭侧成峰</div>
+    </div>
+
+    </div>
+
+    <br>
+    <div style="text-align:center">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    </div>
+    <script src="js/slider.js"></script>
+    <!--</head>-->
+    <br>
+    <div style="text-align: center">
+
+    <button class="btn" onclick="enteringSecondPage()">进入图片搜索</button>
+    </div>
+    </div>
+<div id="secondPage" style="display: none">
+        <div class="navbar-inner">
+            <h1 class="text-center" style="color:black;"><b>相似图像搜索引擎</b><a class="navbar-brand" href="">
+            <img src="/images/3.gif" style="height:100px;" ></a>
+	         </h1>
+
+        </div>
+
+    <div><br></br><br></br>
+    </div>
+	
+
+    <center></center>	
+
+    
+    <div id="main" class="container">
+        <table class="table" style="background: white;border: 1px solid beige;box-shadow: 3px 5px 15px 0px rgba(0, 0, 0, 0.2), 3px 5px 15px 0 rgba(0, 0, 0, 0.19);
+">
+             <tr style="background: lightgrey;"><td><b>请选择要上传的图片</b></td><td><b></b></td></tr>
+            <tr><td><form method=post enctype=multipart/form-data>
+                        <!--<input data-bind="value: title" type="text" id="inputTask" placeholder="Path to the image" style="width: 150px;">-->
+                <a href="javascript:;" class="file">
+                    <input type="file" id="file" name="file" required onchange="changepic(this)">点击上传图片</input>
+                </a>
+            <img src="" id="show" width="200">
+            <a href="javascript:;" class="file">
+			    <input type=submit value ="Search!" onclick="fun()">Search!</input>
+            </a>
+        </form></td><td><b></b></td></tr>
+
+<!--                <a href="javascript:;" class="file">-->
+                <tr id="row1" style="display:none;"><td><a href=""><button id="clear" style="display:none;">Clear</button></a></td><td></td>
+
+            </tr>
+        </table>
+        
+        
+    </div>
+    <center>
+    <img id="load" src="/images/ajax-loader.gif" style="height:100px;weight:100px;display:none;" >
+    </center>
+    <div id="main" class="container">
+       <table id="table" class="table" style="background: white; border: 1px ;display:none;" ><tbody>
+        <tr>
+            <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+                <img id="img0" src="" alt="Norway" style="
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 200px;
+        height: 200px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 0px;
+        padding-left: 5px;
+        border-left-width: 0px;
+        border-bottom-width: 0px;border-right-width: 0px;
+    " width="200" height="200">
+                <div class="imgtag" id="imgtag0"></div>
+                <button class="imgLike" id="btnLike0" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+            </td>
+             
+            <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		    <img id="img1" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+   
+" width="200" height="200">
+   		         <div class="imgtag" id="imgtag1"></div>
+                <button class="imgLike" id="btnLike1" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+             <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img2" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		 <div class="imgtag" id="imgtag2"></div>
+                 <button class="imgLike" id="btnLike2" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+         </tr>
+         <tr style="background: white;"><td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img3" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		 <div class="imgtag" id="imgtag3"></div>
+             <button class="imgLike" id="btnLike3" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+             <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img4" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		<div class="imgtag" id="imgtag4"></div>
+                 <button class="imgLike" id="btnLike4" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+             <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img5" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		<div class="imgtag" id="imgtag5"></div>
+                 <button class="imgLike" id="btnLike5" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+         </tr>
+	<tr><td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img6" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		<div class="imgtag" id="imgtag6"></div>
+        <button class="imgLike" id="btnLike6" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+             <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img7" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		 <div class="imgtag" id="imgtag7">123</div>
+                 <button class="imgLike" id="btnLike7" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+             <td style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;border-right-width: 1px;background: white;
+">
+    		<img id="img8" src="" alt="Norway" style="
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 200px;
+    height: 200px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left-width: 0px;
+    border-bottom-width: 0px;border-right-width: 0px;
+" width="200" height="200">
+   		<div class="imgtag" id="imgtag8"></div>
+                 <button class="imgLike" id="btnLike8" style="margin-left:90px;" onclick="changelike(this)" >♡️</button>
+             </td>
+         </tr></tbody>
+       </table>
+
+
+</div>
+</div>
+	
+
+
+
+
+    <script type="text/javascript">
+	function myFunction(){
+
+	document.getElementById("predictedResult").innerHTML= "";
+	$('#clear').hide();
+	}
+		function fun(){
+
+		$('#load').show();
+                
+   		$("form").submit(function(evt){	 
+		//$('#loader-icon').show(); 
+               		 
+		evt.preventDefault();
+		
+                //$('#loader-icon').show();
+     		var formData = new FormData($(this)[0]);
+		 
+   		$.ajax({
+      		 url: 'imgUpload',
+       		type: 'POST',
+      		 data: formData,
+      		 //async: false,
+      		 cache: false,
+      		 contentType: false,
+      		 enctype: 'multipart/form-data',
+      		 processData: false,
+		
+      		 success: function (response) {
+		 $('#load').hide();
+		 $('#row1').show();
+		  //$('#clear').show();
+                  //console.log(response[1]);
+        	  //document.getElementById("predictedResult").innerHTML= response; 
+                  document.getElementById("img0").src = response.image0;
+		 document.getElementById("img1").src = response.image1;
+                 document.getElementById("img2").src = response.image2;
+                 document.getElementById("img3").src = response.image3;
+                  document.getElementById("img4").src = response.image4;
+                  document.getElementById("img5").src = response.image5;
+                  document.getElementById("img6").src = response.image6;
+                  document.getElementById("img7").src = response.image7;
+                  document.getElementById("img8").src = response.image8;
+                  for (var i = 0; i < 9; i++) {
+                      document.getElementById("imgtag" + String(i)).innerHTML = response.tag[i];
+                  }
+                  $('#table').show();
+		   $('#clear').show();
+                  
+ 
+      		 }
+   		});
+   return false;
+ })};
+
+       function enteringSecondPage() {
+        $('#firstpage').hide();
+        $('#secondPage').show();
+    }
+    function changepic() {
+        var reads= new FileReader();
+        f=document.getElementById('file').files[0];
+        reads.readAsDataURL(f);
+        reads.onload=function (e) {
+            document.getElementById('show').src=this.result;
+        };
+    }
+    function changelike(btn) {
+        if (! btn.checked) {
+            btn.checked = true;
+            btn.innerHTML = "❤️";
+        }
+        else {
+            btn.checked = false;
+            btn.innerHTML = "♡";
+        }
+
+    }
+    </script>
+</body>
+</html>
